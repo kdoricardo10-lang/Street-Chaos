@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://c8v6cmyfvnp2m"]
 
 [ext_resource type="Script" path="res://scenes/ui/Lobby.cs" id="1"]
 

@@ -14,6 +14,13 @@ namespace StreetChaos
 
         public override void _Ready()
         {
+            var bg = new ColorRect
+            {
+                Color = new Color(0.05f, 0.05f, 0.08f, 1f),
+                AnchorsPreset = (int)LayoutPreset.FullRect
+            };
+            AddChild(bg);
+
             _splash = new TextureRect
             {
                 Texture = GD.Load<Texture2D>("res://p1.png"),
