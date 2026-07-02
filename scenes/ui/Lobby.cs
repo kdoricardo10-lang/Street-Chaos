@@ -17,7 +17,7 @@ namespace StreetChaos
             // ── Background (shared between splash and lobby) ─────────
             var bg = new TextureRect
             {
-                Texture = GD.Load<Texture2D>("res://tela inicial.png"),
+                Texture = GD.Load<Texture2D>("res://Lobby.png"),
                 ExpandMode = TextureRect.ExpandModeEnum.FitHeightProportional,
                 AnchorsPreset = (int)LayoutPreset.FullRect,
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered
