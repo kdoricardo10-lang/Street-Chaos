@@ -6,32 +6,37 @@ namespace StreetChaos
     public partial class Lobby : Control
     {
         private bool _splashDone;
+        private Control _splash;
         private Control _lobbyContent;
-        private Control _hostJoinButtons;
+        private Label _splashText;
+        private VBoxContainer _controls;
         private LineEdit _ipInput;
         private Label _statusLabel;
+        private Tween _textTween;
 
         public override void _Ready()
         {
+            _splash = GetNode<Control>("Splash");
+            _splashText = GetNode<Label>("Splash/SplashText");
             _lobbyContent = GetNode<Control>("LobbyContent");
+            _controls = GetNode<VBoxContainer>("LobbyContent/Controls");
 
-            _hostJoinButtons = new VBoxContainer
-            {
-                AnchorLeft = 0.5f, AnchorTop = 0.4f,
-                AnchorRight = 0.5f, AnchorBottom = 0.4f,
-                OffsetLeft = -160f, OffsetTop = 0f,
-                OffsetRight = 160f, OffsetBottom = 200f,
-                Visible = true
-            };
-            _hostJoinButtons.AddThemeConstantOverride("separation", 12);
-            _lobbyContent.AddChild(_hostJoinButtons);
+            _textTween = CreateTween().SetLoops();
+            _textTween.TweenProperty(_splashText, "self_modulate",
+                new Color(1, 1, 1, 0.3f), 1.0)
+                .SetTrans(Tween.TransitionType.Sine)
+                .SetEase(Tween.EaseType.InOut);
+            _textTween.TweenProperty(_splashText, "self_modulate",
+                new Color(1, 1, 1, 1f), 1.0)
+                .SetTrans(Tween.TransitionType.Sine)
+                .SetEase(Tween.EaseType.InOut);
 
             var ipLabel = new Label
             {
                 Text = "Endereço do Servidor:",
                 HorizontalAlignment = HorizontalAlignment.Center
             };
-            _hostJoinButtons.AddChild(ipLabel);
+            _controls.AddChild(ipLabel);
 
             _ipInput = new LineEdit
             {
@@ -40,10 +45,10 @@ namespace StreetChaos
                 SizeFlagsHorizontal = SizeFlags.Fill,
                 MaxLength = 45
             };
-            _hostJoinButtons.AddChild(_ipInput);
+            _controls.AddChild(_ipInput);
 
-            _hostJoinButtons.AddChild(CreateMenuButton("CRIAR PARTIDA", StartHost));
-            _hostJoinButtons.AddChild(CreateMenuButton("ENTRAR EM PARTIDA", StartJoin));
+            _controls.AddChild(CreateMenuButton("CRIAR PARTIDA", StartHost));
+            _controls.AddChild(CreateMenuButton("ENTRAR EM PARTIDA", StartJoin));
 
             _statusLabel = new Label
             {
@@ -89,7 +94,8 @@ namespace StreetChaos
             if (!_splashDone && @event is InputEventKey { Pressed: true })
             {
                 _splashDone = true;
-                GetNode("Splash").QueueFree();
+                _textTween?.Kill();
+                _splash.QueueFree();
                 _lobbyContent.Visible = true;
             }
         }
