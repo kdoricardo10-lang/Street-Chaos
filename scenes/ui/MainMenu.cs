@@ -14,86 +14,23 @@ namespace StreetChaos
         private Control _mainButtons;
         private Control _hostJoinButtons;
         private Label _statusLabel;
-        private Control _splashContainer;
-        private bool _splashActive = true;
-
         public override void _Ready()
         {
-            // ── Splash Screen (comes before menu background) ────────────
-            _splashContainer = new Control
-            {
-                AnchorsPreset = (int)LayoutPreset.FullRect
-            };
-            AddChild(_splashContainer);
-
-            // Background image
-            var splashBg = new TextureRect
-            {
-                Texture = GD.Load<Texture2D>("res://tela inicial.png"),
-                ExpandMode = TextureRect.ExpandModeEnum.FitHeightProportional,
-                AnchorsPreset = (int)LayoutPreset.FullRect,
-                StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered
-            };
-            _splashContainer.AddChild(splashBg);
-
-            // Dark overlay for readability
-            var overlay = new ColorRect
-            {
-                Color = new Color(0, 0, 0, 0.35f),
-                AnchorsPreset = (int)LayoutPreset.FullRect
-            };
-            _splashContainer.AddChild(overlay);
-
-            var splashTitle = new Label
-            {
-                Text = "STREET CHAOS",
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                AnchorLeft = 0.5f, AnchorTop = 0.5f,
-                AnchorRight = 0.5f, AnchorBottom = 0.5f,
-                OffsetLeft = -300f, OffsetTop = -80f,
-                OffsetRight = 300f, OffsetBottom = 80f,
-            };
-            splashTitle.AddThemeFontSizeOverride("font_size", 96);
-            splashTitle.AddThemeColorOverride("font_color", new Color(0.9f, 0.2f, 0.2f, 1.0f));
-            splashTitle.AddThemeColorOverride("font_outline_color", new Color(0, 0, 0, 0.8f));
-            splashTitle.AddThemeConstantOverride("outline_size", 4);
-            _splashContainer.AddChild(splashTitle);
-
-            var splashVersion = new Label
-            {
-                Text = "v0.1.0 Alpha",
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Bottom,
-                AnchorLeft = 0.5f, AnchorTop = 1.0f,
-                AnchorRight = 0.5f, AnchorBottom = 1.0f,
-                OffsetLeft = -50f, OffsetTop = -30f,
-                OffsetRight = 50f, OffsetBottom = -8f,
-            };
-            splashVersion.AddThemeFontSizeOverride("font_size", 12);
-            splashVersion.AddThemeColorOverride("font_color", new Color(0.8f, 0.8f, 0.8f, 1f));
-            splashVersion.AddThemeColorOverride("font_outline_color", new Color(0, 0, 0, 0.5f));
-            splashVersion.AddThemeConstantOverride("outline_size", 1);
-            _splashContainer.AddChild(splashVersion);
-
-            // ── Menu Background (hidden until splash ends) ──────────────
+            // ── Menu Background ──────────────────────────────────────────
             var menuBg = new ColorRect
             {
                 Color = new Color(0.05f, 0.05f, 0.08f, 1.0f),
-                AnchorsPreset = (int)LayoutPreset.FullRect,
-                Visible = false
+                AnchorsPreset = (int)LayoutPreset.FullRect
             };
             AddChild(menuBg);
-            // Use menuBg reference stored as a Control children won't need ref
 
-            // ── Main Buttons Container (hidden until splash ends) ──────
+            // ── Main Buttons Container ───────────────────────────────────
             _mainButtons = new VBoxContainer
             {
                 AnchorLeft = 0.5f, AnchorTop = 0.4f,
                 AnchorRight = 0.5f, AnchorBottom = 0.4f,
                 OffsetLeft = -120f, OffsetTop = 0f,
-                OffsetRight = 120f, OffsetBottom = 300f,
-                Visible = false
+                OffsetRight = 120f, OffsetBottom = 300f
             };
             _mainButtons.AddThemeConstantOverride("separation", 16);
             AddChild(_mainButtons);
@@ -176,27 +113,6 @@ namespace StreetChaos
                     ChangeToWorld();
                 };
             }
-
-            // Qualquer tecla ou clique fecha a splash
-
-        }
-
-        public override void _Input(InputEvent @event)
-        {
-            if (!_splashActive) return;
-            if (@event is InputEventKey { Pressed: true })
-            {
-                DismissSplash();
-            }
-        }
-
-        private void DismissSplash()
-        {
-            if (!_splashActive) return;
-            _splashActive = false;
-            _splashContainer.Visible = false;
-            _mainButtons.Visible = true;
-        }
 
         private Button CreateMenuButton(string text, Action action)
         {
