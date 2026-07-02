@@ -1,4 +1,4 @@
-﻿[gd_scene format=3 uid="uid://df7k2nax1p6y0"]
+[gd_scene format=3 uid="uid://df7k2nax1p6y0"]
 
 [ext_resource type="Script" uid="uid://c3saiq3bvk07d" path="res://scenes/world/World.cs" id="1"]
 [ext_resource type="PackedScene" path="res://characters/player/player.tscn" id="2"]
@@ -8,10 +8,7 @@
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_city"]
 sky_top_color = Color(0.4, 0.5, 0.8, 1)
 sky_horizon_color = Color(0.6, 0.7, 0.9, 1)
-sky_ground_color = Color(0.2, 0.2, 0.22, 1)
-sky_energy = 1.0
 sun_angle_max = 90.0
-ground_horizon = 10.0
 
 [sub_resource type="Sky" id="Sky_city"]
 sky_material = SubResource("ProceduralSkyMaterial_city")
@@ -19,17 +16,17 @@ sky_material = SubResource("ProceduralSkyMaterial_city")
 [sub_resource type="Environment" id="Environment3D_city"]
 background_mode = 2
 sky = SubResource("Sky_city")
-tonemap_mode = 2
-ambient_light_color = Color(0.5, 0.55, 0.65, 1)
 ambient_light_source = 1
+ambient_light_color = Color(0.5, 0.55, 0.65, 1)
+tonemap_mode = 2
 glow_enabled = true
-glow_levels/1 = true
-glow_levels/2 = true
-glow_levels/3 = true
-glow_levels/4 = true
-glow_levels/5 = true
-glow_levels/6 = true
-glow_levels/7 = true
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_levels/3 = 1.0
+glow_levels/4 = 1.0
+glow_levels/5 = 1.0
+glow_levels/6 = 1.0
+glow_levels/7 = 1.0
 
 [node name="World" type="Node3D" unique_id=935673994]
 script = ExtResource("1")
@@ -42,10 +39,8 @@ environment = SubResource("Environment3D_city")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=456374921]
 transform = Transform3D(0.7648422, -0.4150164, 0.49272487, 0, 0.7648422, 0.64421767, -0.64421767, -0.49272487, 0.5849836, 10, 15, 10)
 shadow_enabled = true
-directional_shadow_max_distance = 100
-directional_shadow_split_1 = 0.1
 
-[node name="CityBlock" parent="." instance=ExtResource("4")]
+[node name="CityBlock" parent="." unique_id=2133714781 instance=ExtResource("4")]
 
 [node name="PlayerSpawn" type="Marker3D" parent="." unique_id=468698252]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.585398, 0)
