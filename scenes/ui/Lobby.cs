@@ -24,6 +24,39 @@ namespace StreetChaos
             };
             AddChild(bg);
 
+            // ── Splash content ────────────────────────────────────────
+            var splashTitle = new Label
+            {
+                Text = "STREET CHAOS",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                AnchorLeft = 0.5f, AnchorTop = 0.5f,
+                AnchorRight = 0.5f, AnchorBottom = 0.5f,
+                OffsetLeft = -300f, OffsetTop = -80f,
+                OffsetRight = 300f, OffsetBottom = 80f,
+            };
+            splashTitle.AddThemeFontSizeOverride("font_size", 96);
+            splashTitle.AddThemeColorOverride("font_color", new Color(0.9f, 0.2f, 0.2f, 1.0f));
+            splashTitle.AddThemeColorOverride("font_outline_color", new Color(0, 0, 0, 0.8f));
+            splashTitle.AddThemeConstantOverride("outline_size", 4);
+            AddChild(splashTitle);
+
+            var splashVersion = new Label
+            {
+                Text = "v0.1.0 Alpha",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                AnchorLeft = 0.5f, AnchorTop = 1.0f,
+                AnchorRight = 0.5f, AnchorBottom = 1.0f,
+                OffsetLeft = -50f, OffsetTop = -30f,
+                OffsetRight = 50f, OffsetBottom = -8f,
+            };
+            splashVersion.AddThemeFontSizeOverride("font_size", 12);
+            splashVersion.AddThemeColorOverride("font_color", new Color(0.8f, 0.8f, 0.8f, 1f));
+            splashVersion.AddThemeColorOverride("font_outline_color", new Color(0, 0, 0, 0.5f));
+            splashVersion.AddThemeConstantOverride("outline_size", 1);
+            AddChild(splashVersion);
+
             // ── Lobby content (hidden until splash ends) ────────────
             _lobbyContent = new Control
             {
