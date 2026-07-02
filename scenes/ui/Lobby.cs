@@ -12,6 +12,18 @@ namespace StreetChaos
         private LineEdit _ipInput;
         private Label _statusLabel;
 
+        private static Texture2D LoadTexture(string resPath)
+        {
+            string sysPath = ProjectSettings.GlobalizePath(resPath);
+            if (System.IO.File.Exists(sysPath))
+            {
+                var img = new Image();
+                if (img.Load(sysPath) == Error.Ok)
+                    return ImageTexture.CreateFromImage(img);
+            }
+            return GD.Load<Texture2D>(resPath);
+        }
+
         public override void _Ready()
         {
             var bg = new ColorRect
@@ -23,7 +35,7 @@ namespace StreetChaos
 
             _splash = new TextureRect
             {
-                Texture = GD.Load<Texture2D>("res://p1.png"),
+                Texture = LoadTexture("res://p1.png"),
                 ExpandMode = TextureRect.ExpandModeEnum.FitHeightProportional,
                 AnchorsPreset = (int)LayoutPreset.FullRect,
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered
@@ -39,7 +51,7 @@ namespace StreetChaos
 
             var lobbyBg = new TextureRect
             {
-                Texture = GD.Load<Texture2D>("res://Lobby.png"),
+                Texture = LoadTexture("res://Lobby.png"),
                 ExpandMode = TextureRect.ExpandModeEnum.FitHeightProportional,
                 AnchorsPreset = (int)LayoutPreset.FullRect,
                 StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered
@@ -90,21 +102,28 @@ namespace StreetChaos
             _statusLabel.AddThemeColorOverride("font_color", new Color(1f, 1f, 0.5f, 1f));
             _lobbyContent.AddChild(_statusLabel);
 
-            var net = NetworkManager.Instance;
-            if (net != null)
+            try
             {
-                net.ConnectionFailed += () =>
-                    SetStatus("Falha na conexão!", new Color(1f, 0.3f, 0.3f, 1f));
-                net.ServerStarted += () =>
+                var net = NetworkManager.Instance;
+                if (net != null)
                 {
-                    SetStatus("Servidor criado! Aguardando...", new Color(0.3f, 1f, 0.3f, 1f));
-                    GetTree().ChangeSceneToFile("res://scenes/world/world.tscn");
-                };
-                net.ClientConnected += () =>
-                {
-                    SetStatus("Conectado ao servidor!", new Color(0.3f, 1f, 0.3f, 1f));
-                    GetTree().ChangeSceneToFile("res://scenes/world/world.tscn");
-                };
+                    net.ConnectionFailed += () =>
+                        SetStatus("Falha na conexão!", new Color(1f, 0.3f, 0.3f, 1f));
+                    net.ServerStarted += () =>
+                    {
+                        SetStatus("Servidor criado! Aguardando...", new Color(0.3f, 1f, 0.3f, 1f));
+                        GetTree().ChangeSceneToFile("res://scenes/world/world.tscn");
+                    };
+                    net.ClientConnected += () =>
+                    {
+                        SetStatus("Conectado ao servidor!", new Color(0.3f, 1f, 0.3f, 1f));
+                        GetTree().ChangeSceneToFile("res://scenes/world/world.tscn");
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                GD.PrintErr($"Lobby network init error: {ex}");
             }
         }
 
