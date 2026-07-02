@@ -114,6 +114,8 @@ namespace StreetChaos
                 };
             }
 
+        }
+
         private Button CreateMenuButton(string text, Action action)
         {
             var btn = new Button

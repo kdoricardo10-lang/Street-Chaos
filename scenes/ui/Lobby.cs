@@ -5,6 +5,8 @@ namespace StreetChaos
 {
     public partial class Lobby : Control
     {
+        private bool _splashActive = true;
+        private Control _lobbyContent;
         private Button _hostButton;
         private Button _joinButton;
         private LineEdit _ipInput;
@@ -12,7 +14,7 @@ namespace StreetChaos
 
         public override void _Ready()
         {
-            // Background
+            // ── Background (shared between splash and lobby) ─────────
             var bg = new TextureRect
             {
                 Texture = GD.Load<Texture2D>("res://tela inicial.png"),
@@ -22,13 +24,21 @@ namespace StreetChaos
             };
             AddChild(bg);
 
+            // ── Lobby content (hidden until splash ends) ────────────
+            _lobbyContent = new Control
+            {
+                AnchorsPreset = (int)LayoutPreset.FullRect,
+                Visible = false
+            };
+            AddChild(_lobbyContent);
+
             // Dark overlay
             var overlay = new ColorRect
             {
                 Color = new Color(0, 0, 0, 0.4f),
                 AnchorsPreset = (int)LayoutPreset.FullRect
             };
-            AddChild(overlay);
+            _lobbyContent.AddChild(overlay);
 
             // Title
             var title = new Label
@@ -44,7 +54,7 @@ namespace StreetChaos
             title.AddThemeColorOverride("font_color", new Color(0.9f, 0.2f, 0.2f, 1.0f));
             title.AddThemeColorOverride("font_outline_color", new Color(0, 0, 0, 0.8f));
             title.AddThemeConstantOverride("outline_size", 4);
-            AddChild(title);
+            _lobbyContent.AddChild(title);
 
             // Container for buttons
             var vbox = new VBoxContainer
@@ -55,7 +65,7 @@ namespace StreetChaos
                 OffsetRight = 120f, OffsetBottom = 200f
             };
             vbox.AddThemeConstantOverride("separation", 16);
-            AddChild(vbox);
+            _lobbyContent.AddChild(vbox);
 
             _hostButton = CreateLobbyButton("HOSPEDAR", () =>
             {
@@ -107,6 +117,16 @@ namespace StreetChaos
                     SetStatus("Servidor criado! Aguardando...", new Color(0.3f, 1f, 0.3f, 1f));
                 net.ClientConnected += () =>
                     SetStatus("Conectado ao servidor!", new Color(0.3f, 1f, 0.3f, 1f));
+            }
+        }
+
+        public override void _Input(InputEvent @event)
+        {
+            if (!_splashActive) return;
+            if (@event is InputEventKey { Pressed: true })
+            {
+                _splashActive = false;
+                _lobbyContent.Visible = true;
             }
         }
 
