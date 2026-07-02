@@ -184,7 +184,7 @@ namespace StreetChaos
         public override void _Input(InputEvent @event)
         {
             if (!_splashActive) return;
-            if (@event is InputEventKey { Pressed: true } || @event is InputEventMouseButton { Pressed: true })
+            if (@event is InputEventKey { Pressed: true })
             {
                 DismissSplash();
             }
