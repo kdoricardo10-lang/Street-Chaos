@@ -23,7 +23,7 @@ namespace StreetChaos
         [Export] public float StunDuration { get; set; } = 0.5f;
 
         [ExportGroup("Model")]
-        [Export] public float ModelHeightOffset { get; set; } = 0.5f;
+        [Export] public float ModelHeightOffset { get; set; } = 0f;
 
         [ExportGroup("References")]
         [Export] public Node3D HitboxContainer { get; set; }
