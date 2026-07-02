@@ -8,7 +8,7 @@ namespace StreetChaos
         private bool _splashDone;
         private Control _splash;
         private Control _lobbyContent;
-        private Label _splashText;
+        private Button _splashBtn;
         private VBoxContainer _controls;
         private LineEdit _ipInput;
         private Label _statusLabel;
@@ -17,16 +17,18 @@ namespace StreetChaos
         public override void _Ready()
         {
             _splash = GetNode<Control>("Splash");
-            _splashText = GetNode<Label>("Splash/SplashText");
+            _splashBtn = GetNode<Button>("Splash/SplashBtn");
             _lobbyContent = GetNode<Control>("LobbyContent");
             _controls = GetNode<VBoxContainer>("LobbyContent/Controls");
 
+            _splashBtn.Pressed += GoToLobby;
+
             _textTween = CreateTween().SetLoops();
-            _textTween.TweenProperty(_splashText, "self_modulate",
+            _textTween.TweenProperty(_splashBtn, "self_modulate",
                 new Color(1, 1, 1, 0.3f), 1.0)
                 .SetTrans(Tween.TransitionType.Sine)
                 .SetEase(Tween.EaseType.InOut);
-            _textTween.TweenProperty(_splashText, "self_modulate",
+            _textTween.TweenProperty(_splashBtn, "self_modulate",
                 new Color(1, 1, 1, 1f), 1.0)
                 .SetTrans(Tween.TransitionType.Sine)
                 .SetEase(Tween.EaseType.InOut);
@@ -92,12 +94,16 @@ namespace StreetChaos
         public override void _Input(InputEvent @event)
         {
             if (!_splashDone && @event is InputEventKey { Pressed: true })
-            {
-                _splashDone = true;
-                _textTween?.Kill();
-                _splash.QueueFree();
-                _lobbyContent.Visible = true;
-            }
+                GoToLobby();
+        }
+
+        private void GoToLobby()
+        {
+            if (_splashDone) return;
+            _splashDone = true;
+            _textTween?.Kill();
+            _splash.QueueFree();
+            _lobbyContent.Visible = true;
         }
 
         private Button CreateMenuButton(string text, Action action)
