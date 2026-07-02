@@ -8,32 +8,17 @@ namespace StreetChaos
         private bool _splashDone;
         private ColorRect _splashBg;
         private TextureRect _splashImg;
-        private Button _splashBtn;
         private Control _lobbyContent;
         private VBoxContainer _controls;
         private LineEdit _ipInput;
         private Label _statusLabel;
-        private Tween _textTween;
 
         public override void _Ready()
         {
             _splashBg = GetNode<ColorRect>("SplashBg");
             _splashImg = GetNode<TextureRect>("SplashImg");
-            _splashBtn = GetNode<Button>("SplashBtn");
             _lobbyContent = GetNode<Control>("LobbyContent");
             _controls = GetNode<VBoxContainer>("LobbyContent/Controls");
-
-            _splashBtn.Pressed += GoToLobby;
-
-            _textTween = CreateTween().SetLoops();
-            _textTween.TweenProperty(_splashBtn, "self_modulate",
-                new Color(1, 1, 1, 0.3f), 1.0)
-                .SetTrans(Tween.TransitionType.Sine)
-                .SetEase(Tween.EaseType.InOut);
-            _textTween.TweenProperty(_splashBtn, "self_modulate",
-                new Color(1, 1, 1, 1f), 1.0)
-                .SetTrans(Tween.TransitionType.Sine)
-                .SetEase(Tween.EaseType.InOut);
 
             var ipLabel = new Label
             {
@@ -103,10 +88,8 @@ namespace StreetChaos
         {
             if (_splashDone) return;
             _splashDone = true;
-            _textTween?.Kill();
             _splashBg.QueueFree();
             _splashImg.QueueFree();
-            _splashBtn.QueueFree();
             _lobbyContent.Visible = true;
         }
 
