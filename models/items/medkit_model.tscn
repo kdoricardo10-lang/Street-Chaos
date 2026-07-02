@@ -1,0 +1,36 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="Mat_body"]
+albedo_color = Color(0.9, 0.9, 0.9, 1)
+roughness = 0.6
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_cross"]
+albedo_color = Color(0.8, 0.1, 0.1, 1)
+roughness = 0.5
+metallic = 0.0
+
+[sub_resource type="BoxMesh" id="Box_body"]
+size = Vector3(0.12, 0.1, 0.06)
+material = SubResource("Mat_body")
+
+[sub_resource type="BoxMesh" id="Box_cross_v"]
+size = Vector3(0.06, 0.08, 0.005)
+material = SubResource("Mat_cross")
+
+[sub_resource type="BoxMesh" id="Box_cross_h"]
+size = Vector3(0.08, 0.04, 0.005)
+material = SubResource("Mat_cross")
+
+[node name="MedkitModel" type="Node3D"]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("Box_body")
+
+[node name="CrossV" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, 0.032)
+mesh = SubResource("Box_cross_v")
+
+[node name="CrossH" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0, 0.032)
+mesh = SubResource("Box_cross_h")

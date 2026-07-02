@@ -1,0 +1,31 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="Mat_handle"]
+albedo_color = Color(0.4, 0.25, 0.1, 1)
+roughness = 0.8
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_head"]
+albedo_color = Color(0.3, 0.3, 0.3, 1)
+metallic = 0.9
+roughness = 0.2
+
+[sub_resource type="CylinderMesh" id="Cyl_handle"]
+top_radius = 0.015
+bottom_radius = 0.02
+height = 0.3
+material = SubResource("Mat_handle")
+
+[sub_resource type="BoxMesh" id="Box_head"]
+size = Vector3(0.08, 0.06, 0.14)
+material = SubResource("Mat_head")
+
+[node name="HammerModel" type="Node3D"]
+
+[node name="Handle" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.15, 0)
+mesh = SubResource("Cyl_handle")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.04, 0)
+mesh = SubResource("Box_head")

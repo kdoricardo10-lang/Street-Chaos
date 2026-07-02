@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BuffData" format=3]
+
+[ext_resource type="Script" path="res://scripts/items/BuffData.cs" id="1"]
+[ext_resource type="PackedScene" path="res://models/items/super_speed_buff_model.tscn" id="2"]
+
+[resource]
+script = ExtResource("1")
+WorldModel = ExtResource("2")
+ItemName = "Super Velocidade"
+Description = "Aumenta drasticamente a velocidade por 30s."
+Rarity = 3
+IsConsumable = true
+BuffType = 1
+BuffValue = 2.0
+BuffDuration = 30.0

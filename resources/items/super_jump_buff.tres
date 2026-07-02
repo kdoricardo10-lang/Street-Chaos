@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BuffData" format=3]
+
+[ext_resource type="Script" path="res://scripts/items/BuffData.cs" id="1"]
+[ext_resource type="PackedScene" path="res://models/items/super_jump_buff_model.tscn" id="2"]
+
+[resource]
+script = ExtResource("1")
+WorldModel = ExtResource("2")
+ItemName = "Super Pulo"
+Description = "Lança o jogador para o alto na direção da câmera."
+Rarity = 4
+IsConsumable = true
+BuffType = 4
+BuffValue = 0
+BuffDuration = 30.0

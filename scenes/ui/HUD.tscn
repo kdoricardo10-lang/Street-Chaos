@@ -1,0 +1,198 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/HUD.cs" id="1"]
+
+[node name="HUD" type="Control"]
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1")
+
+[node name="ShieldBar" type="ProgressBar" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -116.0
+offset_right = 150.0
+offset_bottom = -92.0
+value = 100.0
+show_percentage = false
+modulate = Color(0.2, 0.4, 0.8, 1)
+visible = false
+
+[node name="StaminaBar" type="ProgressBar" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -96.0
+offset_right = 150.0
+offset_bottom = -72.0
+value = 100.0
+show_percentage = true
+modulate = Color(0.8, 0.8, 0.2, 1)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -40.0
+offset_right = 150.0
+offset_bottom = -16.0
+value = 100.0
+show_percentage = false
+modulate = Color(0.2, 0.8, 0.2, 1)
+
+[node name="HealthLabel" type="Label" parent="HealthBar"]
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "1000"
+
+[node name="PlayerCount" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 216.0
+offset_bottom = 36.0
+text = "Players: 0"
+
+[node name="MatchTimer" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -60.0
+offset_top = 16.0
+offset_right = 60.0
+offset_bottom = 40.0
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="ZoneWarning" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -200.0
+offset_top = 60.0
+offset_right = 200.0
+offset_bottom = 90.0
+text = ""
+horizontal_alignment = 1
+
+[node name="KillFeed" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 120.0
+offset_right = -16.0
+offset_bottom = 200.0
+text = ""
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Crosshair" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+mouse_filter = 2
+
+[node name="Top" type="ColorRect" parent="Crosshair"]
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 0.0
+offset_right = 1.0
+offset_bottom = -6.0
+color = Color(1, 1, 1, 1)
+
+[node name="Bottom" type="ColorRect" parent="Crosshair"]
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 6.0
+offset_right = 1.0
+offset_bottom = 0.0
+color = Color(1, 1, 1, 1)
+
+[node name="Left" type="ColorRect" parent="Crosshair"]
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 0.0
+offset_top = -1.0
+offset_right = -6.0
+offset_bottom = 1.0
+color = Color(1, 1, 1, 1)
+
+[node name="Right" type="ColorRect" parent="Crosshair"]
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 6.0
+offset_top = -1.0
+offset_right = 0.0
+offset_bottom = 1.0
+color = Color(1, 1, 1, 1)
+
+[node name="DamageOverlay" type="ColorRect" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(1, 0, 0, 0)
+mouse_filter = 2
+
+[node name="DeathMessage" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
+
+[node name="InteractPrompt" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -206.0
+offset_right = 120.0
+offset_bottom = -182.0
+text = ""
+horizontal_alignment = 1
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

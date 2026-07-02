@@ -1,0 +1,47 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="Mat_handle"]
+albedo_color = Color(0.54, 0.27, 0.07, 1)
+roughness = 0.7
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_barrel"]
+albedo_color = Color(0.65, 0.33, 0.09, 1)
+roughness = 0.6
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="Mat_knob"]
+albedo_color = Color(0.2, 0.1, 0.03, 1)
+roughness = 0.8
+metallic = 0.0
+
+[sub_resource type="CylinderMesh" id="Cyl_handle"]
+top_radius = 0.015
+bottom_radius = 0.02
+height = 0.3
+material = SubResource("Mat_handle")
+
+[sub_resource type="CylinderMesh" id="Cyl_barrel"]
+top_radius = 0.035
+bottom_radius = 0.025
+height = 0.35
+material = SubResource("Mat_barrel")
+
+[sub_resource type="SphereMesh" id="Sphere_knob"]
+radius = 0.025
+height = 0.025
+material = SubResource("Mat_knob")
+
+[node name="BaseballBatModel" type="Node3D"]
+
+[node name="Handle" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.15, 0)
+mesh = SubResource("Cyl_handle")
+
+[node name="Barrel" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.175, 0)
+mesh = SubResource("Cyl_barrel")
+
+[node name="Knob" type="MeshInstance3D" parent="."]
+position = Vector3(0, -0.315, 0)
+mesh = SubResource("Sphere_knob")

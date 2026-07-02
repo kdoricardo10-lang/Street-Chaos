@@ -1,0 +1,120 @@
+[gd_resource type="Resource" script_class="FightingStyleData" format=3]
+
+[ext_resource type="Script" path="res://scripts/fighting_styles/FightingStyleData.cs" id="1"]
+[ext_resource type="Script" path="res://scripts/fighting_styles/AttackData.cs" id="2"]
+[ext_resource type="Script" path="res://scripts/fighting_styles/ComboData.cs" id="3"]
+
+[sub_resource type="Resource" id="atk_lp"]
+script = ExtResource("2")
+Type = 0
+Input = 0
+Damage = 9.0
+StaminaCost = 10.0
+Range = 2.0
+Speed = 1.0
+HitDuration = 0.1
+RecoveryTime = 0.25
+KnockbackForce = 3.0
+StunDuration = 0.25
+BreaksGuard = false
+LaunchesEnemy = false
+
+[sub_resource type="Resource" id="atk_hp"]
+script = ExtResource("2")
+Type = 1
+Input = 1
+Damage = 16.0
+StaminaCost = 18.0
+Range = 2.2
+Speed = 0.7
+HitDuration = 0.15
+RecoveryTime = 0.45
+KnockbackForce = 7.0
+StunDuration = 0.45
+BreaksGuard = true
+LaunchesEnemy = false
+
+[sub_resource type="Resource" id="atk_lk"]
+script = ExtResource("2")
+Type = 2
+Input = 2
+Damage = 12.0
+StaminaCost = 12.0
+Range = 2.5
+Speed = 0.9
+HitDuration = 0.12
+RecoveryTime = 0.35
+KnockbackForce = 5.0
+StunDuration = 0.3
+BreaksGuard = false
+LaunchesEnemy = false
+
+[sub_resource type="Resource" id="atk_hk"]
+script = ExtResource("2")
+Type = 3
+Input = 3
+Damage = 22.0
+StaminaCost = 22.0
+Range = 2.8
+Speed = 0.6
+HitDuration = 0.18
+RecoveryTime = 0.55
+KnockbackForce = 12.0
+StunDuration = 0.55
+BreaksGuard = true
+LaunchesEnemy = true
+
+[sub_resource type="Resource" id="atk_up"]
+script = ExtResource("2")
+Type = 4
+Input = 4
+Damage = 18.0
+StaminaCost = 18.0
+Range = 2.0
+Speed = 0.55
+HitDuration = 0.12
+RecoveryTime = 0.5
+KnockbackForce = 8.0
+StunDuration = 0.55
+BreaksGuard = false
+LaunchesEnemy = true
+
+[sub_resource type="Resource" id="atk_knee"]
+script = ExtResource("2")
+Type = 6
+Input = 5
+Damage = 25.0
+StaminaCost = 25.0
+Range = 1.8
+Speed = 0.6
+HitDuration = 0.15
+RecoveryTime = 0.4
+KnockbackForce = 10.0
+StunDuration = 0.6
+BreaksGuard = true
+LaunchesEnemy = true
+
+[sub_resource type="Resource" id="combo_1"]
+script = ExtResource("3")
+ComboName = "Thai Combo"
+DamageMultiplier = 2.4
+StaminaCostMultiplier = 0.8
+FinalHitKnockback = 14.0
+LaunchesEnemy = true
+
+[resource]
+script = ExtResource("1")
+StyleName = "Muay Thai"
+Description = "Artes marciais tailandesas. Joelhadas e cotoveladas devastadoras."
+DamageMultiplier = 1.2
+SpeedMultiplier = 0.9
+DefenseMultiplier = 0.9
+StaminaRegenMultiplier = 1.0
+LightPunch = SubResource("atk_lp")
+HeavyPunch = SubResource("atk_hp")
+LightKick = SubResource("atk_lk")
+HeavyKick = SubResource("atk_hk")
+Uppercut = SubResource("atk_up")
+Knee = SubResource("atk_knee")
+SpecialAttack = SubResource("atk_knee")
+Combos = [SubResource("combo_1")]

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3]
+
+[ext_resource type="Script" path="res://scripts/items/WeaponData.cs" id="1"]
+[ext_resource type="PackedScene" path="res://models/items/baseball_bat_model.tscn" id="2"]
+
+[resource]
+script = ExtResource("1")
+WorldModel = ExtResource("2")
+ItemName = "Taco de Baseball"
+Description = "Taco velho rachado. Causa +8 de dano."
+Type = 0
+Rarity = 0
+IsConsumable = false
+DamageBonus = 8.0
+RangeBonus = 1.3
+KnockbackBonus = 3.0
+Durability = 100.0
+BreaksOnUse = false

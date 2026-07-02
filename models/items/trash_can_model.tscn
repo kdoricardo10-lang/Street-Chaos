@@ -1,0 +1,73 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="Mat_body"]
+albedo_color = Color(0.35, 0.35, 0.35, 1)
+metallic = 0.7
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="Mat_lid"]
+albedo_color = Color(0.25, 0.25, 0.25, 1)
+metallic = 0.8
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="Mat_band"]
+albedo_color = Color(0.4, 0.4, 0.4, 1)
+metallic = 0.6
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="Mat_stripe"]
+albedo_color = Color(0.5, 0.5, 0.5, 1)
+metallic = 0.5
+roughness = 0.5
+
+[sub_resource type="CylinderMesh" id="Cyl_body"]
+top_radius = 0.35
+bottom_radius = 0.4
+height = 0.7
+material = SubResource("Mat_body")
+
+[sub_resource type="CylinderMesh" id="Cyl_lid"]
+top_radius = 0.42
+bottom_radius = 0.42
+height = 0.06
+material = SubResource("Mat_lid")
+
+[sub_resource type="CylinderMesh" id="Cyl_band_top"]
+top_radius = 0.38
+bottom_radius = 0.38
+height = 0.04
+material = SubResource("Mat_band")
+
+[sub_resource type="CylinderMesh" id="Cyl_band_bot"]
+top_radius = 0.42
+bottom_radius = 0.44
+height = 0.03
+material = SubResource("Mat_band")
+
+[sub_resource type="CylinderMesh" id="Cyl_stripe"]
+top_radius = 0.36
+bottom_radius = 0.41
+height = 0.04
+material = SubResource("Mat_stripe")
+
+[node name="TrashCanModel" type="Node3D"]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.35, 0)
+mesh = SubResource("Cyl_body")
+
+[node name="Lid" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.73, 0)
+mesh = SubResource("Cyl_lid")
+
+[node name="BandTop" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.62, 0)
+mesh = SubResource("Cyl_band_top")
+
+[node name="BandBottom" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.06, 0)
+mesh = SubResource("Cyl_band_bot")
+
+[node name="Stripe" type="MeshInstance3D" parent="."]
+position = Vector3(0, 0.35, 0)
+mesh = SubResource("Cyl_stripe")

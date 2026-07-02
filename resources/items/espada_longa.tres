@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3]
+
+[ext_resource type="Script" path="res://scripts/items/WeaponData.cs" id="1"]
+[ext_resource type="PackedScene" path="res://arming_sword.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+WorldModel = ExtResource("2")
+ItemName = "Espada Longa"
+Description = "Espada de aço afiada. Causa +25 de dano."
+Type = 0
+Rarity = 3
+IsConsumable = false
+DamageBonus = 25.0
+RangeBonus = 2.2
+KnockbackBonus = 8.0
+Durability = 100.0
+BreaksOnUse = false

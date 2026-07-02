@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3]
+
+[ext_resource type="Script" path="res://scripts/items/WeaponData.cs" id="1"]
+[ext_resource type="PackedScene" path="res://models/items/hammer_model.tscn" id="2"]
+
+[resource]
+script = ExtResource("1")
+WorldModel = ExtResource("2")
+ItemName = "Martelo de Guerra"
+Description = "Martelo pesado. Causa +35 de dano."
+Type = 0
+Rarity = 4
+IsConsumable = false
+DamageBonus = 35.0
+RangeBonus = 1.5
+KnockbackBonus = 15.0
+Durability = 100.0
+BreaksOnUse = false

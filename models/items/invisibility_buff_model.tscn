@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[sub_resource type="StandardMaterial3D" id="Mat"]
+albedo_color = Color(0.7, 0.2, 1, 0.6)
+emission_enabled = true
+emission = Color(0.7, 0.2, 1, 1)
+emission_energy_multiplier = 0.5
+transparency = 0.4
+
+[sub_resource type="SphereMesh" id="SphereMesh"]
+radius = 0.08
+height = 0.08
+material = SubResource("Mat")
+
+[node name="InvisibilityBuffModel" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh")

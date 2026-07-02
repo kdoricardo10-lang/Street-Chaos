@@ -1,0 +1,8 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://pickups/items/WeaponPickup.cs" id="1"]
+[ext_resource type="PackedScene" path="res://pickups/items/PickupItem.tscn" id="2"]
+
+[node name="BaseballBatPickup" instance=ExtResource("2")]
+script = ExtResource("1")
+ItemResourcePath = "res://resources/items/baseball_bat.tres"

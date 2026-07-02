@@ -1,0 +1,270 @@
+﻿[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/world/building.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/world/BreakableBox.tscn" id="2"]
+
+[sub_resource type="BoxShape3D" id="ground_shape"]
+size = Vector3(200, 0.5, 200)
+
+[sub_resource type="StandardMaterial3D" id="ground_mat"]
+albedo_color = Color(0.12, 0.12, 0.14, 1)
+
+[sub_resource type="BoxMesh" id="ground_mesh"]
+material = SubResource("ground_mat")
+size = Vector3(200, 0.5, 200)
+
+[sub_resource type="StandardMaterial3D" id="road_mat"]
+albedo_color = Color(0.08, 0.08, 0.08, 1)
+
+[sub_resource type="BoxShape3D" id="road_shape"]
+size = Vector3(10, 0.3, 200)
+
+[sub_resource type="BoxMesh" id="road_mesh"]
+material = SubResource("road_mat")
+size = Vector3(10, 0.3, 200)
+
+[sub_resource type="StandardMaterial3D" id="sidewalk_mat"]
+albedo_color = Color(0.35, 0.35, 0.37, 1)
+
+[sub_resource type="BoxShape3D" id="sw_shape"]
+size = Vector3(4, 0.4, 200)
+
+[sub_resource type="BoxMesh" id="sw_mesh"]
+material = SubResource("sidewalk_mat")
+size = Vector3(4, 0.4, 200)
+
+[sub_resource type="BoxShape3D" id="wall_shape"]
+size = Vector3(2, 3, 2)
+
+[sub_resource type="StandardMaterial3D" id="wall_mat"]
+albedo_color = Color(0.25, 0.25, 0.25, 1)
+
+[sub_resource type="BoxMesh" id="wall_mesh"]
+material = SubResource("wall_mat")
+size = Vector3(2, 3, 2)
+
+[sub_resource type="StandardMaterial3D" id="lamp_mat"]
+albedo_color = Color(1, 0.9, 0.6, 1)
+
+; ── Node Structure ──
+[node name="CityBlock" type="Node3D"]
+
+; Ground
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("ground_shape")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("ground_mesh")
+
+; ============ BUILDINGS ============
+; Row 1 (Z = -50)
+[node name="Bldg_1_1" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, -50)
+
+[node name="Bldg_1_2" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -50)
+
+[node name="Bldg_1_3" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+
+[node name="Bldg_1_4" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -50)
+
+[node name="Bldg_1_5" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -50)
+
+; Row 2 (Z = -25)
+[node name="Bldg_2_1" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, -25)
+
+[node name="Bldg_2_2" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -25)
+
+[node name="Bldg_2_3" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="Bldg_2_4" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -25)
+
+[node name="Bldg_2_5" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -25)
+
+; Row 3 (Z = 0)
+[node name="Bldg_3_1" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0)
+
+[node name="Bldg_3_2" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="Bldg_3_3" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Bldg_3_4" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+
+[node name="Bldg_3_5" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0)
+
+; Row 4 (Z = 25)
+[node name="Bldg_4_1" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 25)
+
+[node name="Bldg_4_2" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 25)
+
+[node name="Bldg_4_3" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
+
+[node name="Bldg_4_4" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 25)
+
+[node name="Bldg_4_5" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 25)
+
+; Row 5 (Z = 50)
+[node name="Bldg_5_1" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 50)
+
+[node name="Bldg_5_2" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 50)
+
+[node name="Bldg_5_3" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+
+[node name="Bldg_5_4" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 50)
+
+[node name="Bldg_5_5" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 50)
+
+; ============ BREAKABLE BOXES (loot containers) ============
+[node name="LootBox_1" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, -50)
+
+[node name="LootBox_2" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0, -50)
+
+[node name="LootBox_3" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, -25)
+
+[node name="LootBox_4" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0, -25)
+
+[node name="LootBox_5" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 0)
+
+[node name="LootBox_6" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0, 0)
+
+[node name="LootBox_7" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 25)
+
+[node name="LootBox_8" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0, 25)
+
+[node name="LootBox_9" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 0, 50)
+
+[node name="LootBox_10" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 0, 50)
+
+; Street-level loot boxes between buildings
+[node name="LootBox_11" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -37)
+
+[node name="LootBox_12" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -37)
+
+[node name="LootBox_13" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -37)
+
+[node name="LootBox_14" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -37)
+
+; ============ SPAWN POINTS ============
+; Player spawns distributed across the map
+[node name="Spawn_1" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1, -40)
+
+[node name="Spawn_2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1, -40)
+
+[node name="Spawn_3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -40)
+
+[node name="Spawn_4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1, -40)
+
+[node name="Spawn_5" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1, -15)
+
+[node name="Spawn_6" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 1, -15)
+
+[node name="Spawn_7" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1, 15)
+
+[node name="Spawn_8" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 1, 15)
+
+[node name="Spawn_9" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1, 40)
+
+[node name="Spawn_10" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 1, 40)
+
+; ============ LOOT SPAWN MARKERS ============
+[node name="LootSpawn_1" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, -60)
+
+[node name="LootSpawn_2" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -60)
+
+[node name="LootSpawn_3" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -60)
+
+[node name="LootSpawn_4" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, -60)
+
+[node name="LootSpawn_5" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, -60)
+
+[node name="LootSpawn_6" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, -35)
+
+[node name="LootSpawn_7" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, -35)
+
+[node name="LootSpawn_8" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, -10)
+
+[node name="LootSpawn_9" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, -10)
+
+[node name="LootSpawn_10" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, 10)
+
+[node name="LootSpawn_11" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, 10)
+
+[node name="LootSpawn_12" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, 35)
+
+[node name="LootSpawn_13" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, 35)
+
+[node name="LootSpawn_14" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 1, 60)
+
+[node name="LootSpawn_15" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 60)
+
+[node name="LootSpawn_16" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 60)
+
+[node name="LootSpawn_17" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1, 60)
+
+[node name="LootSpawn_18" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 1, 60)

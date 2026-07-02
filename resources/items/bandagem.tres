@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="HealingData" format=3]
+
+[ext_resource type="Script" path="res://scripts/items/HealingData.cs" id="1"]
+[ext_resource type="PackedScene" path="res://models/items/medkit_model.tscn" id="2"]
+
+[resource]
+script = ExtResource("1")
+WorldModel = ExtResource("2")
+ItemName = "Bandagem"
+Description = "Bandagem simples. Cura 15 de vida."
+Type = 3
+Rarity = 0
+IsConsumable = true
+HealAmount = 15

@@ -1,0 +1,119 @@
+[gd_resource type="Resource" script_class="FightingStyleData" format=3]
+
+[ext_resource type="Script" path="res://scripts/fighting_styles/FightingStyleData.cs" id="1"]
+[ext_resource type="Script" path="res://scripts/fighting_styles/AttackData.cs" id="2"]
+[ext_resource type="Script" path="res://scripts/fighting_styles/ComboData.cs" id="3"]
+
+[sub_resource type="Resource" id="atk_lp"]
+script = ExtResource("2")
+Type = 0
+Input = 0
+Damage = 8.0
+StaminaCost = 8.0
+Range = 2.0
+Speed = 1.2
+HitDuration = 0.1
+RecoveryTime = 0.2
+KnockbackForce = 3.0
+StunDuration = 0.2
+BreaksGuard = false
+LaunchesEnemy = false
+
+[sub_resource type="Resource" id="atk_hp"]
+script = ExtResource("2")
+Type = 1
+Input = 1
+Damage = 15.0
+StaminaCost = 15.0
+Range = 2.2
+Speed = 0.8
+HitDuration = 0.15
+RecoveryTime = 0.4
+KnockbackForce = 7.0
+StunDuration = 0.4
+BreaksGuard = true
+LaunchesEnemy = false
+
+[sub_resource type="Resource" id="atk_lk"]
+script = ExtResource("2")
+Type = 2
+Input = 2
+Damage = 10.0
+StaminaCost = 10.0
+Range = 2.5
+Speed = 1.0
+HitDuration = 0.12
+RecoveryTime = 0.3
+KnockbackForce = 4.0
+StunDuration = 0.25
+BreaksGuard = false
+LaunchesEnemy = false
+
+[sub_resource type="Resource" id="atk_hk"]
+script = ExtResource("2")
+Type = 3
+Input = 3
+Damage = 18.0
+StaminaCost = 18.0
+Range = 2.8
+Speed = 0.7
+HitDuration = 0.18
+RecoveryTime = 0.5
+KnockbackForce = 9.0
+StunDuration = 0.5
+BreaksGuard = true
+LaunchesEnemy = true
+
+[sub_resource type="Resource" id="atk_up"]
+script = ExtResource("2")
+Type = 4
+Input = 4
+Damage = 20.0
+StaminaCost = 20.0
+Range = 2.0
+Speed = 0.6
+HitDuration = 0.12
+RecoveryTime = 0.45
+KnockbackForce = 8.0
+StunDuration = 0.6
+BreaksGuard = false
+LaunchesEnemy = true
+
+[sub_resource type="Resource" id="combo_1"]
+script = ExtResource("3")
+ComboName = "Jab Cross"
+DamageMultiplier = 1.8
+StaminaCostMultiplier = 0.8
+FinalHitKnockback = 10.0
+
+[sub_resource type="Resource" id="combo_2"]
+script = ExtResource("3")
+ComboName = "Low High"
+DamageMultiplier = 2.0
+StaminaCostMultiplier = 0.8
+FinalHitKnockback = 12.0
+LaunchesEnemy = true
+
+[sub_resource type="Resource" id="combo_3"]
+script = ExtResource("3")
+ComboName = "Devastation"
+DamageMultiplier = 2.5
+StaminaCostMultiplier = 0.8
+FinalHitKnockback = 15.0
+LaunchesEnemy = true
+Unblockable = true
+
+[resource]
+script = ExtResource("1")
+StyleName = "Street Brawler"
+Description = "Luta de rua sem regras. Golpes sujos e brutalidade."
+DamageMultiplier = 1.0
+SpeedMultiplier = 1.0
+DefenseMultiplier = 1.0
+StaminaRegenMultiplier = 1.0
+LightPunch = SubResource("atk_lp")
+HeavyPunch = SubResource("atk_hp")
+LightKick = SubResource("atk_lk")
+HeavyKick = SubResource("atk_hk")
+Uppercut = SubResource("atk_up")
+Combos = [SubResource("combo_1"), SubResource("combo_2"), SubResource("combo_3")]
