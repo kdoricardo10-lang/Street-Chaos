@@ -6,9 +6,10 @@ namespace StreetChaos
     public partial class Lobby : Control
     {
         private bool _splashDone;
-        private Control _splash;
-        private Control _lobbyContent;
+        private ColorRect _splashBg;
+        private TextureRect _splashImg;
         private Button _splashBtn;
+        private Control _lobbyContent;
         private VBoxContainer _controls;
         private LineEdit _ipInput;
         private Label _statusLabel;
@@ -16,8 +17,9 @@ namespace StreetChaos
 
         public override void _Ready()
         {
-            _splash = GetNode<Control>("Splash");
-            _splashBtn = GetNode<Button>("Splash/SplashBtn");
+            _splashBg = GetNode<ColorRect>("SplashBg");
+            _splashImg = GetNode<TextureRect>("SplashImg");
+            _splashBtn = GetNode<Button>("SplashBtn");
             _lobbyContent = GetNode<Control>("LobbyContent");
             _controls = GetNode<VBoxContainer>("LobbyContent/Controls");
 
@@ -102,7 +104,9 @@ namespace StreetChaos
             if (_splashDone) return;
             _splashDone = true;
             _textTween?.Kill();
-            _splash.QueueFree();
+            _splashBg.QueueFree();
+            _splashImg.QueueFree();
+            _splashBtn.QueueFree();
             _lobbyContent.Visible = true;
         }
 
