@@ -10,8 +10,6 @@ namespace StreetChaos
         private Button _splashBtn;
         private Control _lobbyContent;
         private Button _btnJogar;
-        private Button _btnOpcao1;
-        private Button _btnOpcao2;
         private Tween _imgTween;
 
         public override void _Ready()
@@ -21,8 +19,6 @@ namespace StreetChaos
             _splashBtn = GetNode<Button>("SplashBtn");
             _lobbyContent = GetNode<Control>("LobbyContent");
             _btnJogar = GetNode<Button>("LobbyContent/BtnJogar");
-            _btnOpcao1 = GetNode<Button>("LobbyContent/BtnOpcao1");
-            _btnOpcao2 = GetNode<Button>("LobbyContent/BtnOpcao2");
 
             _splashBtn.Pressed += GoToLobby;
 
@@ -37,8 +33,6 @@ namespace StreetChaos
                 .SetEase(Tween.EaseType.InOut);
 
             _btnJogar.Pressed += OnJogar;
-            _btnOpcao1.Pressed += OnOpcao1;
-            _btnOpcao2.Pressed += OnOpcao2;
         }
 
         public override void _Input(InputEvent @event)
@@ -61,16 +55,6 @@ namespace StreetChaos
         private void OnJogar()
         {
             GetTree().ChangeSceneToFile("res://scenes/world/world.tscn");
-        }
-
-        private void OnOpcao1()
-        {
-            GD.Print("Opcao 1 clicada");
-        }
-
-        private void OnOpcao2()
-        {
-            GD.Print("Opcao 2 clicada");
         }
     }
 }

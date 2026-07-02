@@ -64,21 +64,3 @@ anchor_right = 0.206
 anchor_bottom = 0.672
 flat = true
 mouse_default_cursor_shape = 2
-
-[node name="BtnOpcao1" type="Button" parent="LobbyContent"]
-anchors_preset = 0
-anchor_left = 0.440
-anchor_top = 0.366
-anchor_right = 0.512
-anchor_bottom = 0.493
-flat = true
-mouse_default_cursor_shape = 2
-
-[node name="BtnOpcao2" type="Button" parent="LobbyContent"]
-anchors_preset = 0
-anchor_left = 0.722
-anchor_top = 0.723
-anchor_right = 0.880
-anchor_bottom = 0.782
-flat = true
-mouse_default_cursor_shape = 2

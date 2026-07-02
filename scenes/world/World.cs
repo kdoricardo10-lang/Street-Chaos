@@ -89,6 +89,15 @@ namespace StreetChaos
             {
                 NetworkManager.Instance.JoinGame();
             }
+            else if (@event is InputEventKey { Pressed: true, Keycode: Key.Escape })
+            {
+                ReturnToLobby();
+            }
+        }
+
+        private void ReturnToLobby()
+        {
+            GetTree().ChangeSceneToFile("res://scenes/ui/Lobby.tscn");
         }
 
         private void OnHostReady()
