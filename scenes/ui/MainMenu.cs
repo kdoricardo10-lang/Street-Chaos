@@ -15,7 +15,7 @@ namespace StreetChaos
         private Control _hostJoinButtons;
         private Label _statusLabel;
         private Control _splashContainer;
-        private Label _pressKeyLabel;
+        private Button _splashButton;
         private bool _splashActive = true;
 
         public override void _Ready()
@@ -61,21 +61,24 @@ namespace StreetChaos
             splashTitle.AddThemeConstantOverride("outline_size", 4);
             _splashContainer.AddChild(splashTitle);
 
-            _pressKeyLabel = new Label
+            _splashButton = new Button
             {
                 Text = "APERTE QUALQUER TECLA",
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
+                SizeFlagsHorizontal = SizeFlags.ShrinkCenter,
                 AnchorLeft = 0.5f, AnchorTop = 0.75f,
                 AnchorRight = 0.5f, AnchorBottom = 0.75f,
-                OffsetLeft = -200f, OffsetTop = -15f,
-                OffsetRight = 200f, OffsetBottom = 15f,
+                OffsetLeft = -200f, OffsetTop = -20f,
+                OffsetRight = 200f, OffsetBottom = 20f,
             };
-            _pressKeyLabel.AddThemeFontSizeOverride("font_size", 22);
-            _pressKeyLabel.AddThemeColorOverride("font_color", new Color(1f, 1f, 1f, 1f));
-            _pressKeyLabel.AddThemeColorOverride("font_outline_color", new Color(0, 0, 0, 0.6f));
-            _pressKeyLabel.AddThemeConstantOverride("outline_size", 2);
-            _splashContainer.AddChild(_pressKeyLabel);
+            _splashButton.AddThemeFontSizeOverride("font_size", 22);
+            _splashButton.AddThemeColorOverride("font_color", new Color(1f, 1f, 1f, 1f));
+            _splashButton.AddThemeColorOverride("font_outline_color", new Color(0, 0, 0, 0.6f));
+            _splashButton.AddThemeConstantOverride("outline_size", 2);
+            _splashButton.AddThemeStyleboxOverride("normal", new StyleBoxEmpty());
+            _splashButton.AddThemeStyleboxOverride("hover", new StyleBoxEmpty());
+            _splashButton.AddThemeStyleboxOverride("pressed", new StyleBoxEmpty());
+            _splashButton.MouseDefaultCursorShape = Control.CursorShape.PointingHand;
+            _splashContainer.AddChild(_splashButton);
 
             var splashVersion = new Label
             {
@@ -194,30 +197,39 @@ namespace StreetChaos
                 };
             }
 
-            // Animação do "aperte qualquer tecla" com pulse + fade
-            _pressKeyLabel.Scale = Vector2.One;
+            // Botão do splash fecha a splash e mostra o menu
+            _splashButton.Pressed += DismissSplash;
+
+            // Animação pulsante no botão
+            _splashButton.Scale = Vector2.One;
             var pulseTween = CreateTween().SetLoops();
-            pulseTween.TweenProperty(_pressKeyLabel, "scale", new Vector2(1.05f, 1.05f), 0.7f)
+            pulseTween.TweenProperty(_splashButton, "scale", new Vector2(1.05f, 1.05f), 0.7f)
                 .SetEase(Tween.EaseType.Out)
                 .SetTrans(Tween.TransitionType.Sine);
-            pulseTween.Parallel().TweenProperty(_pressKeyLabel, "modulate", new Color(1, 1, 1, 0.3f), 0.7f)
+            pulseTween.Parallel().TweenProperty(_splashButton, "modulate", new Color(1, 1, 1, 0.3f), 0.7f)
                 .SetEase(Tween.EaseType.In);
-            pulseTween.TweenProperty(_pressKeyLabel, "scale", Vector2.One, 0.7f)
+            pulseTween.TweenProperty(_splashButton, "scale", Vector2.One, 0.7f)
                 .SetEase(Tween.EaseType.Out)
                 .SetTrans(Tween.TransitionType.Bounce);
-            pulseTween.Parallel().TweenProperty(_pressKeyLabel, "modulate", new Color(1, 1, 1, 1f), 0.7f)
+            pulseTween.Parallel().TweenProperty(_splashButton, "modulate", new Color(1, 1, 1, 1f), 0.7f)
                 .SetEase(Tween.EaseType.Out);
         }
 
         public override void _Input(InputEvent @event)
         {
             if (!_splashActive) return;
-            if (@event is InputEventKey || @event is InputEventMouseButton)
+            if (@event is InputEventKey { Pressed: true } || @event is InputEventMouseButton { Pressed: true })
             {
-                _splashActive = false;
-                _splashContainer.Visible = false;
-                _mainButtons.Visible = true;
+                DismissSplash();
             }
+        }
+
+        private void DismissSplash()
+        {
+            if (!_splashActive) return;
+            _splashActive = false;
+            _splashContainer.Visible = false;
+            _mainButtons.Visible = true;
         }
 
         private Button CreateMenuButton(string text, Action action)
