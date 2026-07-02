@@ -291,7 +291,8 @@ namespace StreetChaos
 
         private Vector3 GetSpawnPos()
         {
-            Vector3 basePos = PlayerSpawnPoint?.GlobalPosition ?? Vector3.Zero;
+            Node3D spawnPoint = PlayerSpawnPoint ?? GetNodeOrNull<Node3D>("PlayerSpawn");
+            Vector3 basePos = spawnPoint?.GlobalPosition ?? new Vector3(0, 0.9f, 80);
             return basePos + new Vector3(
                 GD.Randf() * 8f - 4f, 0, GD.Randf() * 8f - 4f);
         }
