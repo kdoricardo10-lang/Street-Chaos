@@ -107,7 +107,6 @@ namespace StreetChaos
             _splashBg.QueueFree();
             _splashImg.QueueFree();
             _splashBtn.QueueFree();
-            GetWindow().Size = new Vector2I(1672, 941);
             _lobbyContent.Visible = true;
         }
 
