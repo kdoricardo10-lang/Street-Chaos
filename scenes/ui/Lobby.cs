@@ -5,18 +5,6 @@ namespace StreetChaos
 {
     public partial class Lobby : Control
     {
-        private static Texture2D LoadTexture(string resPath)
-        {
-            string sysPath = ProjectSettings.GlobalizePath(resPath);
-            if (System.IO.File.Exists(sysPath))
-            {
-                var img = new Image();
-                if (img.Load(sysPath) == Error.Ok)
-                    return ImageTexture.CreateFromImage(img);
-            }
-            return GD.Load<Texture2D>(resPath);
-        }
-
         private bool _splashDone;
         private ColorRect _splashBg;
         private TextureRect _splashImg;
@@ -31,11 +19,9 @@ namespace StreetChaos
         {
             _splashBg = GetNode<ColorRect>("SplashBg");
             _splashImg = GetNode<TextureRect>("SplashImg");
-            _splashImg.Texture = LoadTexture("res://p1.png");
             _splashBtn = GetNode<Button>("SplashBtn");
             _lobbyContent = GetNode<Control>("LobbyContent");
             _controls = GetNode<VBoxContainer>("LobbyContent/Controls");
-            GetNode<TextureRect>("LobbyContent/LobbyImg").Texture = LoadTexture("res://Lobby.png");
 
             _splashBtn.Pressed += GoToLobby;
 
