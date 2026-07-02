@@ -6,57 +6,14 @@ namespace StreetChaos
     public partial class Lobby : Control
     {
         private bool _splashDone;
-        private TextureRect _splash;
         private Control _lobbyContent;
         private Control _hostJoinButtons;
         private LineEdit _ipInput;
         private Label _statusLabel;
 
-        private static Texture2D LoadTexture(string resPath)
-        {
-            string sysPath = ProjectSettings.GlobalizePath(resPath);
-            if (System.IO.File.Exists(sysPath))
-            {
-                var img = new Image();
-                if (img.Load(sysPath) == Error.Ok)
-                    return ImageTexture.CreateFromImage(img);
-            }
-            return GD.Load<Texture2D>(resPath);
-        }
-
         public override void _Ready()
         {
-            var bg = new ColorRect
-            {
-                Color = new Color(0.05f, 0.05f, 0.08f, 1f),
-                AnchorsPreset = (int)LayoutPreset.FullRect
-            };
-            AddChild(bg);
-
-            _splash = new TextureRect
-            {
-                Texture = LoadTexture("res://p1.png"),
-                ExpandMode = TextureRect.ExpandModeEnum.FitHeightProportional,
-                AnchorsPreset = (int)LayoutPreset.FullRect,
-                StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered
-            };
-            AddChild(_splash);
-
-            _lobbyContent = new Control
-            {
-                AnchorsPreset = (int)LayoutPreset.FullRect,
-                Visible = false
-            };
-            AddChild(_lobbyContent);
-
-            var lobbyBg = new TextureRect
-            {
-                Texture = LoadTexture("res://Lobby.png"),
-                ExpandMode = TextureRect.ExpandModeEnum.FitHeightProportional,
-                AnchorsPreset = (int)LayoutPreset.FullRect,
-                StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered
-            };
-            _lobbyContent.AddChild(lobbyBg);
+            _lobbyContent = GetNode<Control>("LobbyContent");
 
             _hostJoinButtons = new VBoxContainer
             {
@@ -132,7 +89,7 @@ namespace StreetChaos
             if (!_splashDone && @event is InputEventKey { Pressed: true })
             {
                 _splashDone = true;
-                _splash.QueueFree();
+                GetNode("Splash").QueueFree();
                 _lobbyContent.Visible = true;
             }
         }
