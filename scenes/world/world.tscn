@@ -32,6 +32,7 @@ glow_levels/7 = 1.0
 script = ExtResource("1")
 PlayerScene = ExtResource("2")
 HUDScene = ExtResource("3")
+PlayerSpawnPoint = NodePath("PlayerSpawn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=467604326]
 environment = SubResource("Environment3D_city")
@@ -44,7 +45,7 @@ shadow_enabled = true
 [node name="CityBlock" parent="." unique_id=2133714781 instance=ExtResource("4")]
 
 [node name="PlayerSpawn" type="Marker3D" parent="." unique_id=468698252]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 9.94095)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, -37)
 
 [node name="AmbientLight" type="OmniLight3D" parent="." unique_id=1710855766]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
