@@ -14,10 +14,12 @@ namespace StreetChaos
         public override void _Ready()
         {
             // ── Background ────────────────────────────────────────────
-            var bg = new ColorRect
+            var bg = new TextureRect
             {
-                Color = new Color(0.05f, 0.05f, 0.08f, 1.0f),
-                AnchorsPreset = (int)LayoutPreset.FullRect
+                Texture = GD.Load<Texture2D>("res://tela inicial.png"),
+                ExpandMode = TextureRect.ExpandModeEnum.FitHeightProportional,
+                AnchorsPreset = (int)LayoutPreset.FullRect,
+                StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered
             };
             AddChild(bg);
 
