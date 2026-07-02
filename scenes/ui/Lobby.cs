@@ -54,7 +54,16 @@ namespace StreetChaos
 
         private void OnJogar()
         {
-            GetTree().ChangeSceneToFile("res://scenes/world/world.tscn");
+            _btnJogar.Disabled = true;
+            var tween = CreateTween();
+            tween.TweenProperty(_btnJogar, "scale",
+                new Vector2(1.08f, 1.08f), 0.15f)
+                .SetTrans(Tween.TransitionType.Back)
+                .SetEase(Tween.EaseType.Out);
+            tween.TweenProperty(_btnJogar, "self_modulate",
+                new Color(1, 1, 1, 0.5f), 0.15f);
+            tween.TweenCallback(Callable.From(() =>
+                GetTree().ChangeSceneToFile("res://scenes/world/world.tscn")));
         }
     }
 }
