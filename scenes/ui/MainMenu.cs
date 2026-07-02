@@ -27,6 +27,16 @@ namespace StreetChaos
             };
             AddChild(_splashContainer);
 
+            // Background image
+            var splashBg = new TextureRect
+            {
+                Texture = GD.Load<Texture2D>("res://splesh_pg.png"),
+                ExpandMode = TextureRect.ExpandModeEnum.FitHeightProportional,
+                AnchorsPreset = (int)LayoutPreset.FullRect,
+                StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered
+            };
+            _splashContainer.AddChild(splashBg);
+
             // Dark overlay for readability
             var overlay = new ColorRect
             {
