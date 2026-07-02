@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5iarhrvyifpr"
-path="res://.godot/imported/Lobby.png-05b8df59fb10324bf854f36f65028984.ctex"
+uid="uid://b2v8d4dv62siv"
+path="res://.godot/imported/tela inicial.png-aa9504dc1730c24a62e790807f129f54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Lobby.png"
-dest_files=["res://.godot/imported/Lobby.png-05b8df59fb10324bf854f36f65028984.ctex"]
+source_file="res://tela inicial.png"
+dest_files=["res://.godot/imported/tela inicial.png-aa9504dc1730c24a62e790807f129f54.ctex"]
 
 [params]
 
