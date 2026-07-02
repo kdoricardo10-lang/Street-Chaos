@@ -26,8 +26,9 @@ AudioManager="*res://scripts/autoloads/AudioManager.cs"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1536
+window/size/viewport_height=1024
+window/size/mode=0
 
 [dotnet]
 
