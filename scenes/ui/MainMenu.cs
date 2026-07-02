@@ -15,7 +15,6 @@ namespace StreetChaos
         private Control _hostJoinButtons;
         private Label _statusLabel;
         private Control _splashContainer;
-        private Button _splashButton;
         private bool _splashActive = true;
 
         public override void _Ready()
@@ -26,6 +25,16 @@ namespace StreetChaos
                 AnchorsPreset = (int)LayoutPreset.FullRect
             };
             AddChild(_splashContainer);
+
+            // Background image
+            var splashBg = new TextureRect
+            {
+                Texture = GD.Load<Texture2D>("res://tela inicial.png"),
+                ExpandMode = TextureRect.ExpandModeEnum.FitHeightProportional,
+                AnchorsPreset = (int)LayoutPreset.FullRect,
+                StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered
+            };
+            _splashContainer.AddChild(splashBg);
 
             // Dark overlay for readability
             var overlay = new ColorRect
@@ -50,25 +59,6 @@ namespace StreetChaos
             splashTitle.AddThemeColorOverride("font_outline_color", new Color(0, 0, 0, 0.8f));
             splashTitle.AddThemeConstantOverride("outline_size", 4);
             _splashContainer.AddChild(splashTitle);
-
-            _splashButton = new Button
-            {
-                Text = "APERTE QUALQUER TECLA",
-                SizeFlagsHorizontal = SizeFlags.ShrinkCenter,
-                AnchorLeft = 0.5f, AnchorTop = 0.75f,
-                AnchorRight = 0.5f, AnchorBottom = 0.75f,
-                OffsetLeft = -200f, OffsetTop = -20f,
-                OffsetRight = 200f, OffsetBottom = 20f,
-            };
-            _splashButton.AddThemeFontSizeOverride("font_size", 22);
-            _splashButton.AddThemeColorOverride("font_color", new Color(1f, 1f, 1f, 1f));
-            _splashButton.AddThemeColorOverride("font_outline_color", new Color(0, 0, 0, 0.6f));
-            _splashButton.AddThemeConstantOverride("outline_size", 2);
-            _splashButton.AddThemeStyleboxOverride("normal", new StyleBoxEmpty());
-            _splashButton.AddThemeStyleboxOverride("hover", new StyleBoxEmpty());
-            _splashButton.AddThemeStyleboxOverride("pressed", new StyleBoxEmpty());
-            _splashButton.MouseDefaultCursorShape = Control.CursorShape.PointingHand;
-            _splashContainer.AddChild(_splashButton);
 
             var splashVersion = new Label
             {
@@ -187,22 +177,8 @@ namespace StreetChaos
                 };
             }
 
-            // Botão do splash fecha a splash e mostra o menu
-            _splashButton.Pressed += DismissSplash;
+            // Qualquer tecla ou clique fecha a splash
 
-            // Animação pulsante no botão
-            _splashButton.Scale = Vector2.One;
-            var pulseTween = CreateTween().SetLoops();
-            pulseTween.TweenProperty(_splashButton, "scale", new Vector2(1.05f, 1.05f), 0.7f)
-                .SetEase(Tween.EaseType.Out)
-                .SetTrans(Tween.TransitionType.Sine);
-            pulseTween.Parallel().TweenProperty(_splashButton, "modulate", new Color(1, 1, 1, 0.3f), 0.7f)
-                .SetEase(Tween.EaseType.In);
-            pulseTween.TweenProperty(_splashButton, "scale", Vector2.One, 0.7f)
-                .SetEase(Tween.EaseType.Out)
-                .SetTrans(Tween.TransitionType.Bounce);
-            pulseTween.Parallel().TweenProperty(_splashButton, "modulate", new Color(1, 1, 1, 1f), 0.7f)
-                .SetEase(Tween.EaseType.Out);
         }
 
         public override void _Input(InputEvent @event)
